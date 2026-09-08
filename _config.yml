@@ -1,0 +1,19 @@
+title: Antiphonus
+description: "Antiphonus — a world for the unfairly dead."
+author: solus_mocksun
+
+permalink: pretty
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+sass:
+  style: compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - STYLE-GUIDE.md
+  - node_modules
+  - vendor

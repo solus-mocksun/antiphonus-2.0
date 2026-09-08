@@ -1,0 +1,8 @@
+<header class="ap-header">
+  <nav class="ap-header__nav">
+    <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-active"{% endif %}>Home</a>
+    <a href="{{ '/characters/' | relative_url }}"{% if page.url contains '/characters' %} class="is-active"{% endif %}>Characters</a>
+    <a href="{{ '/world/' | relative_url }}"{% if page.url contains '/world' %} class="is-active"{% endif %}>World</a>
+    <a href="{{ '/story/' | relative_url }}"{% if page.url contains '/story' %} class="is-active"{% endif %}>Story</a>
+  </nav>
+</header>

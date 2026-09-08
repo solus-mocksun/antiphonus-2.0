@@ -1,0 +1,351 @@
+/* ==========================================================================
+   ANTIPHONUS — DESIGN SYSTEM CSS
+   Current theme: "bloodline"  (white / black / blood-red — see STYLE-GUIDE.md)
+   Naming convention: ap- = real component, fx- = decorative effect, BEM.
+   Read website/STYLE-GUIDE.md before adding anything here.
+   ========================================================================== */
+
+:root{
+  /* color */
+  --ap-color-bg:          #ffffff;
+  --ap-color-surface:     #f4f4f4;
+  --ap-color-ink:         #111111;
+  --ap-color-mid:         #5a5a5a;
+  --ap-color-dim:         #dcdcdc;
+  --ap-color-accent:      #b3231c;
+  --ap-color-accent-ink:  #ffffff;
+
+  /* type */
+  --ap-font-display: 'Oswald', ui-sans-serif, sans-serif;
+  --ap-font-script:  'Italianno', cursive;
+  --ap-font-body:    'Work Sans', ui-sans-serif, sans-serif;
+  --ap-font-mono:    ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+
+  /* layout */
+  --ap-header-h: 44px;
+  --ap-radius:   0px;
+}
+
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+}
+body{
+  margin:0;
+  background:var(--ap-color-bg);
+  color:var(--ap-color-ink);
+  font-family:var(--ap-font-body);
+  line-height:1.6;
+}
+body.ap-locked{overflow:hidden;}
+img{max-width:100%;display:block;}
+h1,h2,h3,p{margin:0;text-wrap:balance;}
+a{color:inherit;text-decoration:none;}
+:focus-visible{outline:2px solid var(--ap-color-accent);outline-offset:3px;}
+::selection{background:var(--ap-color-accent);color:var(--ap-color-accent-ink);}
+
+main{padding-top:var(--ap-header-h);}
+
+/* --------------------------------------------------------------------------
+   TYPE ROLES — header / subtitle / content-1 / content-2 / body / mono / sub / quote
+   -------------------------------------------------------------------------- */
+.ap-type--header{
+  font-family:var(--ap-font-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;letter-spacing:.01em;
+  color:var(--ap-color-ink);
+}
+.ap-type--subtitle{
+  font-family:var(--ap-font-script);font-weight:400;
+  font-size:clamp(2rem,6vw,3.2rem);line-height:1;
+  color:var(--ap-color-accent);
+}
+.ap-type--content-1{
+  font-family:var(--ap-font-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(1.2rem,3vw,1.6rem);letter-spacing:.02em;
+  color:var(--ap-color-ink);
+}
+.ap-type--content-2{
+  font-family:var(--ap-font-display);font-weight:600;text-transform:uppercase;
+  font-size:.95rem;letter-spacing:.06em;
+  color:var(--ap-color-ink);
+}
+.ap-type--body{
+  font-family:var(--ap-font-body);font-size:1rem;line-height:1.75;max-width:60ch;
+  color:var(--ap-color-mid);
+}
+.ap-type--mono{
+  font-family:var(--ap-font-mono);font-size:.85rem;letter-spacing:.02em;
+  color:var(--ap-color-mid);
+}
+.ap-type--sub{
+  font-family:var(--ap-font-body);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ap-color-mid);
+}
+.ap-type--quote{
+  font-family:var(--ap-font-body);font-style:italic;font-size:1.1rem;line-height:1.5;max-width:34ch;
+  color:var(--ap-color-ink);
+}
+
+/* --------------------------------------------------------------------------
+   COMPONENT — ap-btn
+   -------------------------------------------------------------------------- */
+.ap-btn{
+  display:inline-block;
+  font-family:var(--ap-font-display);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 28px;cursor:pointer;border:1px solid var(--ap-color-ink);
+  background:transparent;color:var(--ap-color-ink);
+  border-radius:var(--ap-radius);
+  transition:background .15s linear,color .15s linear,border-color .15s linear;
+}
+.ap-btn--primary{background:var(--ap-color-accent);color:var(--ap-color-accent-ink);border-color:var(--ap-color-accent);}
+.ap-btn--primary:hover{background:var(--ap-color-ink);border-color:var(--ap-color-ink);}
+.ap-btn--secondary:hover{background:var(--ap-color-ink);color:#fff;border-color:var(--ap-color-ink);}
+
+/* --------------------------------------------------------------------------
+   COMPONENT — ap-media  (borderless placeholder plate; real images
+   dropped in at the paths listed in assets/img/README.md just work)
+   -------------------------------------------------------------------------- */
+.ap-media{
+  background:var(--ap-color-dim);
+  background-size:cover;
+  background-position:center;
+}
+
+/* --------------------------------------------------------------------------
+   FX — decorative, cross-cutting utilities
+   -------------------------------------------------------------------------- */
+.fx-reveal{
+  opacity:1;transform:none;
+  transition:opacity .6s ease, transform .6s ease;
+}
+@media (prefers-reduced-motion: no-preference){
+  .fx-reveal{opacity:0;transform:translateY(16px);}
+  .fx-reveal.is-visible{opacity:1;transform:none;}
+}
+
+/* ==========================================================================
+   HEADER — thin strip, red on white, nav right-aligned
+   ========================================================================== */
+.ap-header{
+  position:sticky;top:0;z-index:50;
+  height:var(--ap-header-h);
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:0 20px;
+  background:#ffffff;
+  border-bottom:1px solid var(--ap-color-dim);
+}
+.ap-header__nav{display:flex;gap:clamp(16px,3vw,36px);}
+.ap-header__nav a{
+  font-family:var(--ap-font-display);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ap-color-accent);
+}
+.ap-header__nav a:hover,
+.ap-header__nav a.is-active{color:var(--ap-color-ink);}
+
+/* ==========================================================================
+   GATE — content warning → load bar → glitch reveal (first visit only)
+   ========================================================================== */
+.ap-gate{
+  position:fixed;inset:0;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  background:#ffffff;color:var(--ap-color-ink);
+  transition:background .2s linear,color .2s linear;
+}
+.ap-gate.is-loading{background:#0a0a0a;color:#fff;}
+.ap-gate__panel{max-width:420px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.ap-gate__panel[hidden]{display:none;}
+
+.ap-gate__loadbar{display:flex;align-items:center;gap:14px;width:min(80vw,360px);}
+.ap-gate__loadpct{
+  font-family:var(--ap-font-mono);font-size:.85rem;min-width:3.2ch;text-align:right;
+  font-variant-numeric:tabular-nums;color:#fff;
+}
+.ap-gate__loadtrack{
+  flex:1;height:10px;background:#555;position:relative;overflow:hidden;
+}
+.ap-gate__loadfill{
+  position:absolute;inset:0;width:0%;background:#ffffff;
+}
+
+.ap-gate__glitch{position:fixed;inset:0;z-index:1001;background:#0a0a0a;pointer-events:none;}
+.ap-gate__glitch.is-active{animation:ap-glitch-fade .5s steps(1) forwards;}
+.ap-gate__glitch.is-active::before,
+.ap-gate__glitch.is-active::after{content:"";position:absolute;inset:0;background:#ffffff;opacity:0;}
+.ap-gate__glitch.is-active::before{animation:ap-glitch-a .5s steps(1) forwards;}
+.ap-gate__glitch.is-active::after{animation:ap-glitch-b .5s steps(1) forwards;}
+@keyframes ap-glitch-fade{from{opacity:1;}to{opacity:0;}}
+@keyframes ap-glitch-a{
+  0%{opacity:0;}
+  30%{opacity:1;clip-path:inset(20% 0 65% 0);transform:translateX(14px);}
+  40%,100%{opacity:0;}
+}
+@keyframes ap-glitch-b{
+  0%,54%{opacity:0;}
+  55%{opacity:1;clip-path:inset(60% 0 15% 0);transform:translateX(-12px);}
+  68%,100%{opacity:0;}
+}
+
+/* ==========================================================================
+   HOME — hero / landing
+   ========================================================================== */
+.ap-hero{
+  position:relative;
+  min-height:calc(100vh - var(--ap-header-h));
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+  background:var(--ap-color-ink);
+}
+.ap-hero__bg{
+  position:absolute;inset:0;
+  background:var(--ap-color-dim) url('/assets/img/hero/hero-bg.jpg') center right / cover no-repeat;
+}
+.ap-hero__bloodpool{
+  position:absolute;left:0;right:0;bottom:0;height:22%;
+  background:linear-gradient(to top, var(--ap-color-accent), transparent);
+  pointer-events:none;
+}
+.ap-hero__inner{
+  position:relative;z-index:1;
+  padding:0 24px 8vh;
+  max-width:640px;
+}
+.ap-hero__title-group{position:relative;width:fit-content;margin-bottom:22px;}
+.ap-hero__title{color:#ffffff;}
+.ap-hero__subtitle{
+  position:absolute;left:4%;bottom:12%;
+  transform:rotate(-3deg);
+  white-space:nowrap;
+}
+.ap-hero .ap-type--body{color:rgba(255,255,255,.82);margin-bottom:24px;}
+
+/* ==========================================================================
+   HOME — transition strip (fight / flight / freeze)
+   ========================================================================== */
+.ap-transition{
+  position:relative;
+  height:12vh;min-height:80px;
+  background:var(--ap-color-accent);
+}
+.ap-transition__squares{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  display:flex;gap:clamp(8px,2vw,20px);
+  z-index:2;
+}
+.ap-transition__square{
+  position:relative;
+  width:clamp(72px,12vw,120px);height:clamp(72px,12vw,120px);
+  overflow:hidden;
+}
+.ap-transition__square--fight .ap-transition__square-bg{background-image:url('/assets/img/transition/fight.jpg');}
+.ap-transition__square--flight .ap-transition__square-bg{background-image:url('/assets/img/transition/flight.jpg');}
+.ap-transition__square--freeze .ap-transition__square-bg{background-image:url('/assets/img/transition/freeze.jpg');}
+.ap-transition__square-bg{
+  position:absolute;inset:0;
+  background-color:var(--ap-color-dim);background-size:cover;background-position:center;
+}
+.ap-transition__square-label{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:#ffffff;color:#000000;
+  font-family:var(--ap-font-display);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  opacity:0;
+  transition:opacity .15s linear;
+}
+.ap-transition__square:hover .ap-transition__square-label,
+.ap-transition__square:focus-within .ap-transition__square-label{opacity:1;}
+
+/* ==========================================================================
+   HOME — character introduction (pinned)
+   -------------------------------------------------------------------------- */
+.ap-charintro{position:relative;}
+.ap-charintro__fixed{
+  position:fixed;
+  top:var(--ap-header-h);left:0;right:0;bottom:0;
+  z-index:1;
+  pointer-events:none;
+}
+.ap-charintro__panel{
+  position:absolute;top:0;bottom:0;
+  display:flex;align-items:center;
+  background:#ffffff;
+  gap:5vw;
+  padding:0 5vw;
+  pointer-events:auto;
+}
+.ap-charintro__panel--left{left:0;width:calc(50% - 3px);justify-content:flex-end;}
+.ap-charintro__panel--right{left:calc(50% + 3px);width:calc(50% - 3px);justify-content:flex-start;}
+.ap-charintro__desc{max-width:26ch;display:flex;flex-direction:column;gap:6px;}
+.ap-charintro__panel--left .ap-charintro__desc{text-align:right;}
+.ap-charintro__panel--right .ap-charintro__desc{text-align:left;}
+.ap-charintro__portrait{width:clamp(140px,22vw,280px);aspect-ratio:3/4;flex:none;}
+.ap-charintro__portrait--antiphonus{background-image:url('/assets/img/characters/antiphonus.png');}
+.ap-charintro__portrait--nyx{background-image:url('/assets/img/characters/nyx.png');}
+
+.ap-charintro__blood-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.ap-charintro__blood{
+  position:absolute;top:0;left:50%;
+  transform:translateX(-50%);
+  width:6px;height:100%;
+  background:var(--ap-color-accent);
+}
+
+.ap-charintro__cta{
+  position:absolute;left:50%;bottom:6vh;
+  transform:translateX(-50%);
+  z-index:2;pointer-events:auto;
+}
+
+.ap-charintro__spacer{height:160vh;}
+
+@media (max-width: 720px){
+  .ap-charintro__fixed{position:static;opacity:1!important;pointer-events:auto;}
+  .ap-charintro__panel{position:static;width:100%;flex-direction:column;padding:32px 6vw;gap:16px;}
+  .ap-charintro__panel--left .ap-charintro__desc,
+  .ap-charintro__panel--right .ap-charintro__desc{text-align:center;}
+  .ap-charintro__blood-wrap{position:static;height:60px;}
+  .ap-charintro__blood{position:static;left:auto;transform:none;width:100%;height:6px;margin:0 auto;}
+  .ap-charintro__cta{position:static;transform:none;display:flex;justify-content:center;padding:24px 0;}
+  .ap-charintro__spacer{height:0;}
+}
+
+/* ==========================================================================
+   HOME — story introduction
+   ========================================================================== */
+.ap-story{padding:14vh 6vw 10vh;max-width:1100px;margin:0 auto;}
+.ap-hook{margin-bottom:56px;max-width:48ch;}
+.ap-story__landscape{width:100%;aspect-ratio:21/9;margin-bottom:64px;}
+.ap-story__cols{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:40px;
+  margin-bottom:64px;
+}
+.ap-story__col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;}
+.ap-story__icon{width:44px;height:44px;color:var(--ap-color-accent);}
+.ap-story__icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;}
+.ap-story__buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+@media (max-width: 720px){
+  .ap-story__cols{grid-template-columns:1fr;gap:36px;}
+}
+
+/* ==========================================================================
+   HOME — contact + TOS
+   ========================================================================== */
+.ap-contact{
+  background:var(--ap-color-surface);
+  padding:8vh 6vw;
+  display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;
+}
+.ap-contact__portrait{aspect-ratio:1/1;}
+.ap-contact__body{display:flex;flex-direction:column;gap:20px;}
+.ap-contact__owned{font-family:var(--ap-font-display);letter-spacing:.02em;}
+.ap-contact__legal{display:flex;flex-direction:column;gap:14px;}
+.ap-contact__legal .ap-type--body{max-width:70ch;}
+
+@media (max-width: 640px){
+  .ap-contact{grid-template-columns:1fr;}
+  .ap-contact__portrait{width:140px;}
+}
