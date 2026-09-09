@@ -116,50 +116,47 @@ to reverse-engineer it from the CSS.
   `overlay` — overlay crushes to black against a near-black background
   no matter the opacity.
 
-## File layout (Jekyll — repo root is one level up from this file)
+## File layout (Jekyll)
 
 ```
-Antiphonus 2.0/                 ← repo root — not served directly, see below
-  .github/workflows/pages.yml   ← builds website/ and copies novel/ alongside it
-  novel/                        ← plain .md chapter files, served as-is at /novel/*.md
-  website/                      ← this Jekyll site — you are here
-    STYLE-GUIDE.md              ← this file
-    CNAME                       ← anti.sundog.rip
-    _config.yml
-    Gemfile
-    _layouts/
-      default.html              ← page shell: gate + header + {{ content }}
-    _includes/
-      header.html
-      gate.html                 ← content-warning / load-bar / glitch overlay
-    assets/
-      css/style.css             ← tokens + components, single source for now
-      js/
-        gate.js                  ← first-visit gate logic
-        scroll.js                 ← scroll-driven reveal/fade behavior
-      img/
-        README.md                ← expected image paths, until real art exists
-    index.html                  ← home page (all Home-page sections)
-    characters/index.html       ← empty until that page is specified
-    world/index.html            ← empty until that page is specified
-    story/index.html            ← empty until that page is specified
+Antiphonus 2.0/            ← repo root == site root, served directly by GitHub Pages
+  CNAME                    ← anti.sundog.rip
+  STYLE-GUIDE.md           ← this file
+  _config.yml
+  Gemfile
+  _layouts/
+    default.html           ← page shell: gate + header + {{ content }}
+  _includes/
+    header.html
+    gate.html               ← content-warning / load-bar / glitch overlay
+  assets/
+    css/style.css           ← tokens + components, single source for now
+    js/
+      gate.js                ← first-visit gate logic
+      scroll.js               ← scroll-driven reveal/fade behavior
+    img/
+      README.md              ← expected image paths, until real art exists
+  novel/                   ← plain .md chapter files, no front matter needed
+  index.html               ← home page (all Home-page sections)
+  characters/index.html    ← empty until that page is specified
+  world/index.html         ← empty until that page is specified
+  story/index.html         ← empty until that page is specified
 ```
 
-**Deployment note:** classic GitHub Pages (deploy-from-branch) can
-only serve the repo root or a folder literally named `docs` — it can't
-serve a custom-named folder like `website/`. So this repo deploys via
-the GitHub Actions workflow above instead: it builds `website/` with
-Jekyll into `_site/`, copies `novel/` into `_site/novel/` alongside it,
-and publishes that combined `_site/` — so the deployed site always has
-both the Jekyll pages and the raw novel chapters at the same origin,
-even though they live in separate top-level folders in the repo. The
-repo's Settings → Pages source has to be set to "GitHub Actions" (not
-"Deploy from a branch") for this to run.
+**Why `novel/` just works:** Jekyll only runs its layout/Liquid
+pipeline on files that have a YAML front-matter block. Chapter files
+with no front matter are left completely alone and copied straight
+into the build output, so they end up servable as plain text at
+`/novel/<filename>.md` with zero extra config — no separate build step
+needed. (An earlier attempt split this into a `website/` subfolder
+plus a GitHub Actions workflow specifically to route around classic
+Pages only being able to serve the repo root or `/docs` — reverted,
+since keeping everything at the repo root sidesteps that entirely and
+needs no workflow file at all.)
 
 As pages get built out, split `style.css` by component if it gets
 unwieldy (`css/components/btn.css`, etc.), but keep the token block in
 one place and keep every filename/class following the rules above.
 
 Run locally with `bundle install` then `bundle exec jekyll serve` from
-inside `website/` — that only builds the Jekyll site, not the
-`novel/` copy step the real deploy does.
+this folder's root.
