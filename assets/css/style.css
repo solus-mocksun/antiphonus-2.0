@@ -154,6 +154,11 @@ main{padding-top:var(--ap-header-h);}
   background:#ffffff;color:var(--ap-color-ink);
   transition:background .2s linear,color .2s linear;
 }
+/* `display:flex` above beats the browser's default [hidden]{display:none}
+   (author styles always win over the UA stylesheet), so on a repeat visit
+   gate.hidden = true was doing nothing visually. This rule is more specific
+   than .ap-gate alone, so it correctly wins instead. */
+.ap-gate[hidden]{display:none;}
 .ap-gate.is-loading{background:#0a0a0a;color:#fff;}
 .ap-gate__panel{max-width:420px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;}
 .ap-gate__panel[hidden]{display:none;}
