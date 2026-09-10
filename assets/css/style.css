@@ -1,17 +1,17 @@
 /* ==========================================================================
    ANTIPHONUS — DESIGN SYSTEM CSS
-   Current theme: "bloodline"  (white / black / blood-red — see STYLE-GUIDE.md)
+   Current theme: "bloodline"  (dark blue-gray / off-white / blood-red — see STYLE-GUIDE.md)
    Naming convention: ap- = real component, fx- = decorative effect, BEM.
    Read website/STYLE-GUIDE.md before adding anything here.
    ========================================================================== */
 
 :root{
   /* color */
-  --ap-color-bg:          #ffffff;
-  --ap-color-surface:     #f4f4f4;
-  --ap-color-ink:         #111111;
-  --ap-color-mid:         #5a5a5a;
-  --ap-color-dim:         #dcdcdc;
+  --ap-color-bg:          #12151b;
+  --ap-color-surface:     #1a1e26;
+  --ap-color-ink:         #e9ebef;
+  --ap-color-mid:         #8b90a0;
+  --ap-color-dim:         #2b2f3a;
   --ap-color-accent:      #b3231c;
   --ap-color-accent-ink:  #ffffff;
 
@@ -151,7 +151,7 @@ main{padding-top:var(--ap-header-h);}
   position:fixed;inset:0;z-index:1000;
   display:flex;align-items:center;justify-content:center;
   padding:24px;
-  background:#ffffff;color:var(--ap-color-ink);
+  background:var(--ap-color-bg);color:var(--ap-color-ink);
   transition:background .2s linear,color .2s linear;
 }
 /* `display:flex` above beats the browser's default [hidden]{display:none}
@@ -198,6 +198,7 @@ main{padding-top:var(--ap-header-h);}
    ========================================================================== */
 .ap-hero{
   position:relative;
+  z-index:2; /* opaque — must paint over .ap-charintro__fixed (z-index:1) while still on screen */
   min-height:calc(100vh - var(--ap-header-h));
   display:flex;align-items:flex-end;
   overflow:hidden;
@@ -206,11 +207,6 @@ main{padding-top:var(--ap-header-h);}
 .ap-hero__bg{
   position:absolute;inset:0;
   background:var(--ap-color-dim) url('/assets/img/hero/hero-bg.jpg') center right / cover no-repeat;
-}
-.ap-hero__bloodpool{
-  position:absolute;left:0;right:0;bottom:0;height:22%;
-  background:linear-gradient(to top, var(--ap-color-accent), transparent);
-  pointer-events:none;
 }
 .ap-hero__inner{
   position:relative;z-index:1;
@@ -231,18 +227,19 @@ main{padding-top:var(--ap-header-h);}
    ========================================================================== */
 .ap-transition{
   position:relative;
+  z-index:2; /* opaque — must paint over .ap-charintro__fixed (z-index:1) while still on screen */
   height:12vh;min-height:80px;
   background:var(--ap-color-accent);
 }
 .ap-transition__squares{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
-  display:flex;gap:clamp(8px,2vw,20px);
+  display:flex;gap:clamp(48px,20vw,200px);
   z-index:2;
 }
 .ap-transition__square{
   position:relative;
-  width:clamp(72px,12vw,120px);height:clamp(72px,12vw,120px);
+  width:clamp(48px,8vw,80px);height:clamp(48px,8vw,80px);
   overflow:hidden;
 }
 .ap-transition__square--fight .ap-transition__square-bg{background-image:url('/assets/img/transition/fight.jpg');}
@@ -276,7 +273,7 @@ main{padding-top:var(--ap-header-h);}
 .ap-charintro__panel{
   position:absolute;top:0;bottom:0;
   display:flex;align-items:center;
-  background:#ffffff;
+  background:var(--ap-color-bg);
   gap:5vw;
   padding:0 5vw;
   pointer-events:auto;

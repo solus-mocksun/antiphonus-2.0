@@ -54,6 +54,11 @@
 
   if (charIntro && spacer && fixedContent) {
     function updateCharIntro() {
+      // .ap-charintro__fixed stays visible the whole time — while the hero
+      // and transition strip are still on screen, they paint over it
+      // (see .ap-hero/.ap-transition z-index in style.css), and scrolling
+      // them out of the way is what naturally reveals it. Only the
+      // fade-out over the spacer is handled here.
       var rect = spacer.getBoundingClientRect();
       var total = rect.height;
       if (total <= 0) return;
@@ -64,6 +69,7 @@
       fixedContent.style.pointerEvents = opacity < 0.05 ? 'none' : 'auto';
     }
     window.addEventListener('scroll', updateCharIntro, { passive: true });
+    window.addEventListener('resize', updateCharIntro, { passive: true });
     updateCharIntro();
   }
 })();

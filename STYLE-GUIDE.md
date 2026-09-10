@@ -79,13 +79,16 @@ always go through a token, even if today only one theme exists.
 
 ## Current theme: `bloodline`
 
-White / near-black / blood-red, flat (no gradients, no glow, no cut
-corners — those belonged to the previous exploration, not this one).
-Built directly from the site's real spec (`Website Notes.md` in the
-vault root): a thin red-on-white header strip, a red transition strip,
-and a blood-red accent used throughout as the one color beat. Display
-type is Oswald, the overlapping cursive subtitle is Italianno, body
-copy is Work Sans.
+Dark blue-gray background (`--ap-color-bg`), off-white ink, blood-red
+accent, flat (no gradients, no glow, no cut corners — those belonged
+to the previous exploration, not this one). Built directly from the
+site's real spec (`Website Notes.md` in the vault root) — one
+deliberate exception to the dark background: the header strip stays
+literal white with red text, per that spec's explicit "red on white"
+call for the header specifically; same for the fight/flight/freeze
+hover labels ("text is black on white"). Everything else follows the
+`--ap-color-bg`/`--ap-color-ink` tokens. Display type is Oswald, the
+overlapping cursive subtitle is Italianno, body copy is Work Sans.
 
 This is the theme actually implemented in `index.html` and the Jekyll
 build under this folder — treat it as live, not a mockup.
