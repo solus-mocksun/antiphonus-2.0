@@ -68,7 +68,7 @@ layout: default
   </div>
 
   <div class="ap-charintro__blood-wrap">
-    <div class="ap-charintro__blood"></div>
+    <div class="ap-media ap-charintro__blood"></div>
   </div>
 
   <div class="ap-charintro__spacer"></div>
@@ -78,9 +78,11 @@ layout: default
      STORY INTRODUCTION
      ============================================================ -->
 <section class="ap-story">
-  <p class="ap-type--content-1 ap-hook">Lorem ipsum dolor sit amet, consectetur adipiscing elit — this is the hook.</p>
+  <div class="ap-story__inner">
+    <p class="ap-type--content-1 ap-hook">Lorem ipsum dolor sit amet, consectetur adipiscing elit — this is the hook.</p>
 
-  <div class="ap-media ap-story__landscape fx-reveal"></div>
+    <div class="ap-media ap-story__landscape fx-reveal"></div>
+  </div>
 
   <div class="ap-story__cols">
     <div class="ap-story__col fx-reveal">
@@ -108,9 +110,11 @@ layout: default
     </div>
   </div>
 
-  <div class="ap-story__buttons">
-    <a class="ap-btn ap-btn--primary" href="{{ '/story/' | relative_url }}">Read the Story</a>
-    <a class="ap-btn ap-btn--secondary" href="{{ '/world/' | relative_url }}">Learn About the World</a>
+  <div class="ap-story__inner">
+    <div class="ap-story__buttons">
+      <a class="ap-btn ap-btn--primary" href="{{ '/story/' | relative_url }}">Read the Story</a>
+      <a class="ap-btn ap-btn--secondary" href="{{ '/world/' | relative_url }}">Learn About the World</a>
+    </div>
   </div>
 </section>
 

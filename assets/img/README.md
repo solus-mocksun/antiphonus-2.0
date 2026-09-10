@@ -10,6 +10,7 @@ it's picked up automatically — nothing else needs to change.
 | `hero/hero-bg.jpg` | Landing full-bleed background — character leaning against the right edge, blood dripping and pooling at the bottom |
 | `characters/antiphonus.png` | Half-body art, left side of the character-intro split |
 | `characters/nyx.png` | Half-body art, right side of the character-intro split |
+| `characters/blood-line.jpg` | Thin vertical image running down the center split, between the two portraits |
 | `transition/fight.jpg` | First hover square, transition strip |
 | `transition/flight.jpg` | Second hover square, transition strip |
 | `transition/freeze.jpg` | Third hover square, transition strip |
