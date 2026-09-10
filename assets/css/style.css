@@ -304,7 +304,7 @@ main{padding-top:var(--ap-header-h);}
   z-index:2;pointer-events:auto;
 }
 
-.ap-charintro__spacer{height:160vh;}
+.ap-charintro__spacer{height:80vh;}
 
 @media (max-width: 720px){
   .ap-charintro__fixed{position:static;opacity:1!important;pointer-events:auto;}
