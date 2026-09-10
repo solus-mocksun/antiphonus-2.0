@@ -1,4 +1,4 @@
-# Novel
+the # Novel
 
 Plain markdown chapter files go here. Write them as normal Markdown —
 **don't add a YAML front-matter block** (a `---`-delimited header).
